@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Session Sync (Cookie & Storage)",
+  "version": "1.0",
+  "description": "Export và Import Cookie, LocalStorage, SessionStorage cho tab hiện tại.",
+  "permissions": [
+    "cookies",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

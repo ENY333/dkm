@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Session Sync</title>
+  <style>
+    body {
+      width: 370px;
+      padding: 12px;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      margin: 0;
+      background: #f8f9fa;
+      color: #212529;
+      box-sizing: border-box;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
+    h3 { margin: 0; font-size: 14px; }
+    select {
+      font-size: 12px;
+      padding: 3px 6px;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      background: #fff;
+    }
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      margin-bottom: 8px;
+      font-size: 12px;
+    }
+    textarea {
+      width: 100%;
+      height: 165px;
+      box-sizing: border-box;
+      font-family: monospace;
+      font-size: 11px;
+      padding: 6px;
+      border: 1.5px dashed #adb5bd;
+      border-radius: 5px;
+      resize: vertical;
+      background: #fff;
+    }
+    textarea.dragover {
+      border-color: #0d6efd;
+      background: #e7f1ff;
+    }
+    .actions {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    button {
+      flex: 1;
+      padding: 7px 6px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 12px;
+      color: #fff;
+    }
+    button:hover { opacity: 0.9; }
+    #btnExport { background: #0d6efd; }
+    #btnCopy { background: #6c757d; flex: 0.65; }
+    #btnImport { background: #198754; }
+    #btnSaveFile { background: #0dcaf0; color: #000; }
+    #btnLoadFile { background: #6610f2; }
+    #btnClear { background: #dc3545; flex: 0.85; }
+    #status {
+      margin-top: 8px;
+      font-size: 12px;
+      min-height: 16px;
+      color: #0d6efd;
+      word-break: break-word;
+    }
+    .err { color: #dc3545 !important; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h3>Session Sync</h3>
+    <select id="formatMode" title="Chế độ xuất dữ liệu">
+      <option value="compact" selected>JSON rút gọn</option>
+      <option value="string">Chuỗi ngắn (name=val)</option>
+      <option value="full">JSON đầy đủ</option>
+    </select>
+  </div>
+
+  <div class="options">
+    <label><input type="checkbox" id="optCookie" checked> Cookie</label>
+    <label><input type="checkbox" id="optLocal"> LocalStorage</label>
+    <label><input type="checkbox" id="optSession"> SessionStorage</label>
+  </div>
+
+  <textarea id="dataBox" placeholder="Bấm 'Lấy', dán JSON / chuỗi cookie, hoặc kéo thả file vào đây..."></textarea>
+
+  <div class="actions">
+    <button id="btnExport">Lấy (Export)</button>
+    <button id="btnCopy">Copy</button>
+    <button id="btnImport">Nhập (Import)</button>
+  </div>
+
+  <div class="actions">
+    <button id="btnSaveFile">Lưu file</button>
+    <button id="btnLoadFile">Chọn file</button>
+    <button id="btnClear">Xóa sạch</button>
+  </div>
+
+  <input type="file" id="fileInput" accept=".json,.txt,application/json,text/plain" style="display:none">
+  <div id="status"></div>
+  <script src="popup.js"></script>
+</body>
+</html>
